@@ -1,74 +1,191 @@
-import { Image, StyleSheet, Platform } from 'react-native';
+import React from "react";
+import { View, Text, ScrollView, Image } from "react-native";
+import styled from "styled-components/native";
+import { LinearGradient } from "expo-linear-gradient";
+import { Ionicons } from "@expo/vector-icons";
 
-import { HelloWave } from '@/components/HelloWave';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
 
 export default function HomeScreen() {
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
-        />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({
-              ios: 'cmd + d',
-              android: 'cmd + m',
-              web: 'F12'
-            })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-        <ThemedText>
-          Tap the Explore tab to learn more about what's included in this starter app.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          When you're ready, run{' '}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
+    <Container>
+  
+      <Header>
+        <View>
+          <WelcomeText>Welcome back</WelcomeText>
+          <Text style={{ color: "white" }}>Animasun 🌟 Priority</Text>
+        </View>
+        <ProfileImage source={{ uri: "https://via.placeholder.com/50" }} />
+      </Header>
+
+   
+      <Card>
+      <CardHeader>
+      <BalanceText>$5,500.50</BalanceText>
+        <BankLogo>
+          <BankInitial>K</BankInitial>
+        </BankLogo> 
+      </CardHeader>
+
+      <CardFooter>
+      <BankText>**** 123-456-7890</BankText>
+        <BankText>Korensi Bank - Current</BankText> 
+      </CardFooter>
+    </Card>
+
+
+      <Actions>
+        <ActionButton>
+          <Ionicons name="send" size={24} color="white" />
+          <Text style={{ color: "white" }}>Transfer</Text>
+        </ActionButton>
+        <ActionButton>
+          <Ionicons name="cash" size={24} color="white" />
+          <Text style={{ color: "white" }}>Request</Text>
+        </ActionButton>
+        <ActionButton>
+          <Ionicons name="swap-horizontal" size={24} color="white" />
+          <Text style={{ color: "white" }}>Swap</Text>
+        </ActionButton>
+        <ActionButton>
+          <Ionicons name="ellipsis-horizontal" size={24} color="white" />
+          <Text style={{ color: "white" }}>More</Text>
+        </ActionButton>
+      </Actions>
+
+    
+      <TransactionsContainer>
+        <TransactionRow>
+          <TransactionText>🍽 Fauget Cafe</TransactionText>
+          <StatusText status="Success">Success</StatusText>
+        </TransactionRow>
+        <TransactionRow>
+          <TransactionText>☕ Larana, Inc.</TransactionText>
+          <StatusText status="Success">Success</StatusText>
+        </TransactionRow>
+        <TransactionRow>
+          <TransactionText>👤 Claudia Alves</TransactionText>
+          <StatusText status="Failed">Failed</StatusText>
+        </TransactionRow>
+        <TransactionRow>
+          <TransactionText>🍽 Borcelle Cafe</TransactionText>
+          <StatusText status="Success">Success</StatusText>
+        </TransactionRow>
+      </TransactionsContainer>
+
+      
+    </Container>
   );
 }
 
-const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
-  },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
-  },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
-  },
-});
+
+// ✅ Styled Components for UI
+// ✅ Styled Components for UI
+const Container = styled(LinearGradient).attrs({
+  colors: ["#0dcf85", "#060f34"],
+})`
+  flex: 1;
+  padding: 20px;
+`;
+
+const Header = styled.View`
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+`;
+
+const ProfileImage = styled.Image`
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
+`;
+
+const WelcomeText = styled.Text`
+  font-size: 18px;
+  font-weight: bold;
+  color: white;
+`;
+
+const Card = styled.View`
+  background: black;
+  border-radius: 15px;
+  padding: 20px;
+  margin: 20px 0;
+  backdrop-filter: blur(10px);
+  height: 180px;
+  width: 100%;
+  flex-direction: column;
+  justify-content: space-around;
+`;
+
+
+const BalanceText = styled.Text`
+  font-size: 26px;
+  color: white;
+  font-weight: bold;
+  letter-spacing: 1.2px;
+`;
+
+const BankLogo = styled.View`
+  width: 45px;
+  height: 45px;
+  border-radius: 10px;
+  background: white;
+  justify-content: center;
+  align-items: center;
+`;
+
+const BankInitial = styled.Text`
+  font-size: 24px;
+  font-weight: bold;
+  color: black;
+`;
+
+const BankText = styled.Text`
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.7);
+`;
+
+const CardHeader = styled.View`
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+const CardFooter = styled.View`
+  margin-top: 10px;
+  flex-direction: row;
+  justify-content: space-between;
+`;
+
+const Actions = styled.View`
+  flex-direction: row;
+  justify-content: space-around;
+  margin-top: 20px;
+`;
+
+const ActionButton = styled.TouchableOpacity`
+  align-items: center;
+`;
+
+const TransactionsContainer = styled(ScrollView)`
+  background: black;
+  border-radius: 15px;
+  padding: 15px;
+  margin-top: 20px;
+`;
+
+const TransactionRow = styled.View`
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+`;
+
+const TransactionText = styled.Text`
+  color: white;
+`;
+
+const StatusText = styled.Text`
+  color: ${(props) => (props.status === "Success" ? "green" : "red")};
+`;
