@@ -1,6 +1,6 @@
 import { StyleSheet, Image, View, Text } from 'react-native';
 
-export default function TabTwoScreen() {
+export default function TransactionScreen() {
   return (
     <View>
       <Text >
